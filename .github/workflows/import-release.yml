@@ -84,13 +84,13 @@ jobs:
               gh release download "${{ steps.release.outputs.tag }}" \
                 --repo "$GITHUB_REPOSITORY" \
                 --pattern "$archive" \
-                --dir /tmp/studio-release
+                --dir /tmp/product-image-release
             done
           else
             gh release download "${{ steps.release.outputs.tag }}" \
               --repo "$GITHUB_REPOSITORY" \
               --pattern '*.zip' \
-              --dir /tmp/studio-release
+              --dir /tmp/product-image-release
           fi
 
       - name: Reserve every image URL from ZIP filenames
@@ -109,7 +109,7 @@ jobs:
             fi
           else
             python tools/preallocate_urls.py \
-              --input-dir /tmp/studio-release \
+              --input-dir /tmp/product-image-release \
               --tag "${{ steps.release.outputs.tag }}" \
               --repo "$GITHUB_REPOSITORY"
           fi
@@ -140,7 +140,7 @@ jobs:
               sequence_flag="--sequence-by-archive-order"
             fi
             python tools/import_reserved_numeric.py \
-              --input-dir /tmp/studio-release \
+              --input-dir /tmp/product-image-release \
               --tag "${{ steps.release.outputs.tag }}" \
               --repo "$GITHUB_REPOSITORY" \
               --batch-id "${{ steps.release.outputs.tag }}" \
@@ -149,10 +149,10 @@ jobs:
               $sequence_flag
           else
             python tools/import_release.py \
-              --input-dir /tmp/studio-release \
+              --input-dir /tmp/product-image-release \
               --tag "${{ steps.release.outputs.tag }}" \
               --repo "$GITHUB_REPOSITORY" \
-              --originals-dir /tmp/studio-originals
+              --originals-dir /tmp/product-image-originals
           fi
 
       - name: Export the complete URL list
