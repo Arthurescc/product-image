@@ -17,7 +17,7 @@ Project memory anchor for context compression, handoff, and continuity.
 - Gallery card clicks open an image preview dialog. They must not download or navigate to a ZIP.
 - `originalUrl` is the per-image GitHub Pages WebP URL; `archiveUrl` is the containing Release ZIP URL.
 - Public copy must not expose ingestion, upload, pre-registration, or internal operating instructions.
-- Public batch name is `Product Image Collection`.
+- Decision: this repository is independent. It has no shared thumbnails, catalogs, releases, or upload portal with any other repository.
 - Numeric release tags use `photos-<start>-<end>` and stable Pages URLs under `thumbnails/<tag>/<number>.webp`.
 - Non-numeric source filenames can be assigned consecutive public numbers in archive filename order and ZIP member order.
 - The numeric reservation workflow accepts tag, start, and end inputs; reserved rows remain hidden until matching images are imported.
@@ -32,7 +32,7 @@ Project memory anchor for context compression, handoff, and continuity.
 
 ## Verification Commands
 
-- `gh release view photos-15001-28441 --repo Arthurescc/product-image --json assets,url,isDraft`
+- Publish new image ZIP archives to `Arthurescc/product-image` Releases; the local import workflow generates this library's previews and URL indexes.
 - Check `docs/data/catalog.json` for 31,381 unique assets: 28,441 ready and 2,940 reserved.
 - Check batch `photos-28442-31381` for continuous titles and URLs from `28442.jpg` through `31381.jpg`.
 - Request public `data/catalog.json`, CSV, and Excel after Pages deployment.
